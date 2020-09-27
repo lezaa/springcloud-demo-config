@@ -1,0 +1,47 @@
+spring: 
+  profiles:
+    active: dev
+
+---
+
+server:
+  port: 7001
+
+#spring的配置
+spring:
+  profiles:dev
+  application:
+    name: springcloud-config-eureka
+
+#eureka配置
+eureka:
+  instance:
+    hostname: eureka7001.com #eureka服务端的实例名称
+  client:
+    register-with-eureka: false #是否向eureka注册中心注册自己
+    fetch-registry: false #false表示自己为注册中心
+    service-url: #监控页面,浏览器访问的时候不需要带上/eureka，服务注册的时候要
+      defaultZone: http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
+      #如果搭建集群就在这里写其他注册中心的地址，多个用逗号隔开。服务注册的时候要每个注册中心都注册
+
+---
+
+server:
+  port: 7001
+
+#spring的配置
+spring:
+  profiles:test
+  application:
+    name: springcloud-config-eureka
+    
+#eureka配置
+eureka:
+  instance:
+    hostname: eureka7001.com #eureka服务端的实例名称
+  client:
+    register-with-eureka: false #是否向eureka注册中心注册自己
+    fetch-registry: false #false表示自己为注册中心
+    service-url: #监控页面,浏览器访问的时候不需要带上/eureka，服务注册的时候要
+      defaultZone: http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
+      #如果搭建集群就在这里写其他注册中心的地址，多个用逗号隔开。服务注册的时候要每个注册中心都注册
